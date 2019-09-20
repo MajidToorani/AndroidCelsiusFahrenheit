@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity
     EditText editTextFahrenheit;
     Button btnToCelsius;
     Button btnToFahrenheit;
-    private static String TAG="TemperatureConverter";
 
     // place to stash variables
 
@@ -36,19 +35,20 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
         // Print Version
 
         try {
             PackageInfo pinfo = getPackageManager().getPackageInfo(getPackageName(), 0);
             int versionNumber = pinfo.versionCode;
             String versionName = pinfo.versionName;
-            Log.d(TAG, "Version: " + versionName + " Number: " + versionNumber);
+            Log.d(getLocalClassName(), "Version: " + versionName + "." + versionNumber);
         }catch(Exception e){
-            Log.d(TAG, "Getting Version: " + e.getMessage());
+            Log.d(getLocalClassName(), "Getting Version: " + e.getMessage());
         }
 
 
-        setContentView(R.layout.activity_main);
 
         // initialize attibutes from the form
         this.editTextCelsius = findViewById(R.id.editTextCelsius);
@@ -108,8 +108,8 @@ public class MainActivity extends AppCompatActivity
         try{
             nCelsius = Float.parseFloat(this.editTextCelsius.getText().toString());
         }catch(Exception e) {
-            Log.d(TAG, "toFahrenheit: " + e.getMessage());
-            Toast.makeText(this, "toFahrenheit: " + e.getMessage(), Toast.LENGTH_LONG ).show();
+            Log.d(getLocalClassName(), "toFahrenheit: " + e.getMessage());
+            Toast.makeText(this, getString(R.string.numberPlease), Toast.LENGTH_LONG).show();
         }
         float nFahrenheit = nCelsius * 1.8f + 32;
         NumberFormat number = NumberFormat.getNumberInstance();
@@ -121,8 +121,8 @@ public class MainActivity extends AppCompatActivity
         try{
             nFahrenheit = Float.parseFloat(this.editTextFahrenheit.getText().toString());
         }catch(Exception e) {
-            Toast.makeText(this, "toCelsius: " + e.getMessage(), Toast.LENGTH_LONG).show();
-            Log.d(TAG, "toCelsius: " + e.getMessage());
+            Log.d(getLocalClassName(), "toCelsius: " + e.getMessage());
+            Toast.makeText(this, getString(R.string.numberPlease), Toast.LENGTH_LONG).show();
         }
         float nCelsius = (nFahrenheit - 32)/ 1.8f;
         NumberFormat number = NumberFormat.getNumberInstance();
