@@ -5,4 +5,5 @@
     <string name="fahrenheit">Fahrenheit</string>
     <string name="toCelsius">To Celsius</string>
     <string name="toFahrenheit">To Fahrenheit</string>
+    <string name="numberPlease">Please enter a number</string>
 </resources>
